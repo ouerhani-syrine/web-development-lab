@@ -17,4 +17,23 @@
         <url-pattern>/Form_Servlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+	<servlet-name>ReadCookie</servlet-name>
+	<servlet-class>ReadCookie</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+	<servlet-name>ReadCookie</servlet-name>
+	<url-pattern>/Read</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+	<servlet-name>VisitCounter</servlet-name>
+	<servlet-class>VisitCounter</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+	<servlet-name>VisitCounter</servlet-name>
+	<url-pattern>/Visit</url-pattern>
+    </servlet-mapping>
 </web-app>

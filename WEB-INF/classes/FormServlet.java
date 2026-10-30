@@ -3,6 +3,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Cookie;
 
 public class FormServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
@@ -10,6 +11,10 @@ public class FormServlet extends HttpServlet {
 		String lastName = request.getParameter("lastName");
 		String birthDate = request.getParameter("birthDate");
 		String sex = request.getParameter("sex");
+		Cookie c1 = new Cookie("firstName",firstName);
+		Cookie c2 = new Cookie("lastName",lastName);
+		Cookie c3 = new Cookie("birthDate",birthDate);
+		Cookie c4 = new Cookie("sex",sex);
 		PrintWriter out;
 		out = response.getWriter();
 		out.println("<!DOCTYPE html>");
@@ -36,5 +41,9 @@ public class FormServlet extends HttpServlet {
 		out.println("</table>");
 		out.println("</body>");
 		out.println("</html>");
+		response.addCookie(c1);
+		response.addCookie(c2);
+		response.addCookie(c3);
+		response.addCookie(c4);
 	}
 }
