@@ -36,4 +36,15 @@
 	<servlet-name>VisitCounter</servlet-name>
 	<url-pattern>/Visit</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+	<servlet-name>ShowSession</servlet-name>
+	<servlet-class>ShowSession</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+	<servlet-name>ShowSession</servlet-name>
+	<url-pattern>/Show</url-pattern>
+    </servlet-mapping>
+
 </web-app>
