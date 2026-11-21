@@ -64,7 +64,14 @@
 	<servlet-name>LoginServlet</servlet-name>
 	<url-pattern>/Login</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+	<servlet-name>AttributeTestServlet</servlet-name>
+	<servlet-class>AttributeTestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+	<servlet-name>AttributeTestServlet</servlet-name>
+	<url-pattern>/AttributeTest</url-pattern>
+    </servlet-mapping>
     <filter>
 	<filter-name>LoggingFilter</filter-name>
 	<filter-class>LoggingFilter</filter-class>
@@ -85,5 +92,10 @@
 	<filter-name>LoggingFilter</filter-name>
 	<url-pattern>/*</url-pattern>
     </filter-mapping>
-    
+    <listener>
+	<listener-class>ApplicationAttributeListener</listener-class>
+    </listener>
+    <listener>
+	<listener-class>RequestAttributeListener</listener-class>
+    </listener>
 </web-app>

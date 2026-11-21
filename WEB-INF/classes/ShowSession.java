@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import javax.servlet.ServletContext;
 
 public class ShowSession extends HttpServlet{
 	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException{
@@ -19,9 +20,20 @@ public class ShowSession extends HttpServlet{
 		out.println("<title>Hello</title>");
 		out.println("</head>");
 		out.println("<body>");
+		if ("true".equals(request.getParameter("invalidate"))) {
+    			HttpSession session = request.getSession(false);
+			if (session != null) {
+        			session.invalidate();
+        			out.println("<h1>Your session has been invalidated!</h1>");
+    			} else {
+        			out.println("<h1>No active session!</h1>");
+    			}
+    			out.println("</body></html>");
+    			return;
+		}
 		HttpSession s = request.getSession(true);
 		if(s.isNew()){
-			s.setAttribute("countVisit","1");
+			//s.setAttribute("countVisit","1");
 			out.println("<h1>Welcome on my site</h1>");
 			out.println("<form method=\"post\" action=\"Show\">");
         		out.println("<label >First Name : </label>");
@@ -39,7 +51,7 @@ public class ShowSession extends HttpServlet{
 		}
 		else{
 			out.println("<h1>Welcome back !</h1>");
-			s.setAttribute("countVisit",String.valueOf(Integer.parseInt((String)s.getAttribute("countVisit"))+1));
+			//s.setAttribute("countVisit",String.valueOf(Integer.parseInt((String)s.getAttribute("countVisit"))+1));
 			LocalDate birthDate = LocalDate.parse((String) s.getAttribute("birthDate"));
 			LocalDate today = LocalDate.now();
 			LocalDate nextBirthday = birthDate.withYear(today.getYear());
@@ -48,8 +60,11 @@ public class ShowSession extends HttpServlet{
 			}
 			long days = ChronoUnit.DAYS.between(today, nextBirthday);
 			out.println("Hi, "+s.getAttribute("firstName")+" "+(String)s.getAttribute("lastName")+". There are "+days+" days to your birthday");
+			out.println("<a href=\"Show?invalidate=true\">Invalidate Session</a>");
 		}
-		out.println("<p> visits = "+s.getAttribute("countVisit")+"</p>");
+		//out.println("<p> visits = "+s.getAttribute("countVisit")+"</p>");
+		ServletContext context = getServletContext();
+		out.println("<p> visits = "+(Integer) context.getAttribute("activeSessions")+"</p>");
 		out.println("</body>");
 		out.println("</html>");
 	}
