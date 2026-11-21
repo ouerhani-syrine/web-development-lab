@@ -9,7 +9,9 @@ public class LoginServlet extends HttpServlet{
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		String userName = request.getParameter("userName");
 		HttpSession s = request.getSession(true);
-		s.setAttribute("user",userName);
+		//s.setAttribute("user",userName);
+		SessionUser sessionUser = new SessionUser(userName);
+        	s.setAttribute("user", sessionUser);
 		PrintWriter out;
 		out = response.getWriter();
 		out.println("<!DOCTYPE html>");
@@ -22,6 +24,8 @@ public class LoginServlet extends HttpServlet{
 		out.println("<body>");
 		out.println("<p>Confirmed ! you can access now to items page </p>");
 		out.println("<a href=\"/web-development-lab/items.html\">Go to items</a>");
+		out.println("<br>");
+		out.println("<a href=\"/web-development-lab/RemoveUser\">Remove SessionUser from session</a>");
 		out.println("</body>");
 		out.println("</html>");
 	}

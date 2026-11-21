@@ -72,6 +72,14 @@
 	<servlet-name>AttributeTestServlet</servlet-name>
 	<url-pattern>/AttributeTest</url-pattern>
     </servlet-mapping>
+    <servlet>
+	<servlet-name>RemoveUserServlet</servlet-name>
+        <servlet-class>RemoveUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+	<servlet-name>RemoveUserServlet</servlet-name>
+	<url-pattern>/RemoveUser</url-pattern>
+    </servlet-mapping>
     <filter>
 	<filter-name>LoggingFilter</filter-name>
 	<filter-class>LoggingFilter</filter-class>
